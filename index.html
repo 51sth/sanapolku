@@ -87,7 +87,7 @@ function render(){
  const c=cards[order[index]],front=direction==='sv',isSv=flipped?!front:front;
  $('lang').textContent=(isSv?'🇸🇪 RUOTSI':'🇫🇮 SUOMI')+' · '+(flipped?'Vastaus':'Kysymys');
  $('word').textContent=isSv?c.sv:c.fi;
- $('forms').classList.toggle('hidden',!c.forms||!flipped);
+ $('forms').classList.toggle('hidden',!c.forms);
  $('forms').innerHTML=c.forms?c.forms.map((f,i)=>`<div class="form"><small>${names[i]}</small><strong>${escapeHtml(f[isSv?0:1])}</strong></div>`).join(''):'';
  $('tip').textContent=flipped?(allMode?'Vapaassa harjoittelussa aikataulu ei muutu':'Arvioi muistaminen painikkeilla'):'Klikkaa korttia nähdäksesi vastauksen';
  for(const b of document.querySelectorAll('[data-grade]')){
