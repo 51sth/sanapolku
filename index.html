@@ -37,7 +37,7 @@ function dayStart(t=Date.now()){const d=new Date(t);return new Date(d.getFullYea
 function cardKey(i){return direction+':'+i}
 function state(i){return progress[cardKey(i)]}
 function isDue(i){const p=state(i);return !(p?.next>Date.now())}
-function scope(){return cards.map((c,i)=>i).filter(i=>group==='Kaikki'||c.group===group)}
+function scope(){return cards.map((c,i)=>i).filter(i=>group==='Kaikki'||cards[i].group===group)}
 function persist(){try{localStorage.setItem(STORAGE,JSON.stringify({version:1,algorithm:'FSRS-5',migrated:true,direction,group,allMode,retention,progress}))}catch(e){$('status').textContent='Tallennus ei onnistunut! Vie varmuuskopio.'}}
 function escapeHtml(t){return String(t).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]))}
 function rebuild(keep=false){const old=keep?order[index]:null;order=scope().filter(i=>allMode||isDue(i));index=old!==null&&order.includes(old)?order.indexOf(old):0;flipped=false;render()}
